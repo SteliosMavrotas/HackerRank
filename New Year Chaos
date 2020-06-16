@@ -1,0 +1,12 @@
+def minimumBribes(q):
+    a=[i for i in range(1,len(q)+1)]
+    b=[i-z if i-z>0 else 0 for i,z in zip(q,a)]
+    c=[0 if i<=2 else 1 for i in b]
+    d=[y for i,y in zip(b,q) if i==0]
+    e=sum([1 if i!=0 else 0 for i in [i-y for i,y in zip(d,sorted(d))]])/2
+    
+    if (sum(c))>0:
+        print("Too chaotic")
+    
+    else:
+        print(sum(b)+e)

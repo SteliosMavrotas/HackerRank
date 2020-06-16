@@ -1,0 +1,5 @@
+def matchingStrings(strings, queries):
+    arr=[]
+    for i in queries:
+        arr.append(sum([1 for j in strings if j==i]))
+    return arr

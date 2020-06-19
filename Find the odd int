@@ -1,0 +1,11 @@
+def find_it(seq):
+    arr={i:0 for i in seq}
+    for i in seq:
+        arr[i]+=1
+    print (arr)
+    
+    for k,v in arr.items():
+        if(v%2!=0):
+            return k
+    
+    return None

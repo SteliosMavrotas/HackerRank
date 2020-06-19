@@ -1,0 +1,21 @@
+import math
+
+def dirReduc(arr):
+    dict={"NORTH":[1,0],"SOUTH":[-1,0],"EAST":[0,1],"WEST":[0,-1]}
+    index=0
+    
+    for i in range(0,len(arr),1):
+        if index<0:
+            index=0
+        try:
+            arr[index+1]
+        except:
+            break
+        
+        if ([i+y for i,y in zip(dict[arr[index]],dict[arr[index+1]])]==[0,0]):
+            arr.pop(index)
+            arr.pop(index)
+            index-=2
+            
+        index+=1
+    return arr

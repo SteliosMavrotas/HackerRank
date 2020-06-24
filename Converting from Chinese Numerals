@@ -1,0 +1,55 @@
+def to_chinese_numeral(n):
+    import re
+    
+    numerals = {
+        "-":"负",
+        ".":"点",
+        0:"零",
+        1:"一",
+        2:"二",
+        3:"三",
+        4:"四",
+        5:"五",
+        6:"六",
+        7:"七",
+        8:"八",
+        9:"九",
+        10:"十",
+        100:"百",
+        1000:"千",
+        10000:"万"
+    }
+    
+    string=""
+    sign=[]
+    pre=0
+    post=0
+    
+    if str(n)[0]=="-":
+        sign=[numerals["-"]]
+        n=abs(n)
+    try:
+        pre=str(n)[:re.search(r'[.]',str(n)).start()]
+        post=str(n)[re.search(r'[.]',str(n)).start()+1:]
+        post=[numerals['.']]+[numerals[int(i)] for i in post]
+    except:
+        post=[]
+        pre=n
+    
+    arr=[(int(v)*int("".join(["1"]+["0" for i in range(0,len(str(pre))-c-1)])))
+         for c,v in enumerate(str(pre))]
+
+    
+    arr=[[i] if len(str(i))==1 or i==10 and c==0 else 
+         [int(str(i)[0]),int("".join(["1"]+["0" for i in range(0,len(str(i))-1)]))] for c,i in enumerate(arr) ]
+    
+    arr=[_ for i in arr for _ in i]
+
+    arr=list(filter(lambda x:x!="1",[v if v!=0 else 0 if len(arr)==1 else "1" if c==len(arr)-1 else 0 if v==0 and arr[c+1]!=0 else "1" for c,v in enumerate(arr)]))
+
+    if len(str(pre))==1 and int(pre)==0:
+        arr=[int(pre)]
+        
+    string=sign+[numerals[i] for i in arr]+post
+
+    return "".join(string)

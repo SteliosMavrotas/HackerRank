@@ -1,0 +1,9 @@
+import numpy as np
+def duplicate_count(text):
+    text=text.lower()
+    dic={i:-1 for i in text}
+    for i in text:
+        dic[i]+=1
+    a=np.array([i for i in dic.values()])
+    return(len(a[a>0]))
+    

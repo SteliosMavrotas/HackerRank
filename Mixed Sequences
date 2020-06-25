@@ -1,0 +1,68 @@
+import math
+import numpy as np
+def fibonacci(n):
+    a=[0,1]
+    if n<=1:
+        return a[n]
+    else:
+        return (fibonacci(n-1)+fibonacci(n-2))
+
+def padovan(n):
+    a=[1,0,0]
+    if n<=2:
+        return a[n]
+    else:
+        return (padovan(n-2)+padovan(n-3))
+    
+def jacobsthal(n):
+    a=[0,1]
+    if n<=1:
+        return a[n]
+    else:
+        return (2*jacobsthal(n-2)+jacobsthal(n-1))
+
+def pell(n):
+    a=[0,1]
+    if n<=1:
+        return a[n]
+    else:
+        return (2*pell(n-1)+pell(n-2))
+    
+def trinacci(n):
+    a=[0,0,1]
+    if n<=2:
+        return a[n]
+    else:
+        return (trinacci(n-1)+trinacci(n-2)+trinacci(n-3))
+
+def tetranacci(n):
+    a=[0,0,0,1]
+    
+    if n<=2:
+        return a[n]
+    else:
+        return (tetranacci(n-1)+tetranacci(n-2)+tetranacci(n-3)+tetranacci(n-4))
+        
+def mixbonacci(pattern, length):
+    op=pattern
+    ns=[]
+    switch={'fib':fibonacci,'pad':padovan,'jac':jacobsthal,'pel':pell,'tri':trinacci,
+            'tet':tetranacci}
+    a=np.array(op)
+  
+    d={i:0 for i in set(a)}
+    
+    if pattern==[] or length==0:
+        return []
+    
+    a=[pattern for i in range(math.ceil(length/len(pattern)))]
+    pattern=[_ for j in a for _ in j][0:length]
+    
+    for i in pattern:
+        ns.append(d[i])
+        d[i]+=1
+        
+    print (ns)
+    print(pattern)
+    
+    return ([switch[fun](no) for fun,no in zip(pattern,ns)])

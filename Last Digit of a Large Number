@@ -1,0 +1,9 @@
+import math
+def last_digit(n1, n2):
+    if n2==0:
+        return 1
+      
+    s=[str((n1)**i)[-1] for i in range(4,10)]
+    
+    return(int(s[n2%len(set([str((n1)**i)[-1] for i in range(1,10)]))]))
+    

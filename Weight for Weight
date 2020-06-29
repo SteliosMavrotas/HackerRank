@@ -1,0 +1,2 @@
+def order_weight(strng): return " ".join([str(k[0]) for k in sorted([[j,sum([int(k) for k in j])] for c,j in enumerate([i for i in strng.split(" ")])],key=lambda x:(x[1],x[0]))])   
+  

@@ -1,0 +1,2 @@
+def spin_words(sentence):
+    return " ".join([j[::-1] if len(j)>4 else j for j in [i for i in sentence.split(" ")]])

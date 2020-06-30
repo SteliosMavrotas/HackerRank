@@ -1,0 +1,20 @@
+from itertools import groupby
+
+def decode_bits(bits):
+    bits=bits.strip("0")
+    n=min([len(list(g)) for k, g in groupby(bits, key=lambda x: x)])
+    return bits.replace("".join(["0" for i in range(0,7*n)]),'  ').replace("".join(["0" for i in range(0,3*n)]),' ').replace("".join(["1" for i in range(0,3*n)]),'-').replace("".join(["1" for i in range(0,n)]),'.').replace("".join(["0" for i in range(0,n)]),'')
+    
+    
+def decode_morse(morse_code):
+    dic={'.-':'A','-...':'B','-.-.':'C','-..':'D','.':'E','..-.':'F','--.':'G',
+    '....':'H','..':'I','.---':'J','-.-':'K','.-..':'L','--':'M',
+    '-.':'N','---':'O','.--.':'P','--.-':'Q','.-.':'R','...':'S','-':'T','..-':'U',
+    '...-':'V','.--':'W','-..-':'X','-.--':'Y','--..':'Z',0:'-----',1:'.----',
+    2:'..---',3:'...--',4:'....-',5:'.....',6:'-....',7:'--...',8:'---..',9:'----.',
+    '-.-.--':'!','.-.-.-':'.','':' ','...---...':'SOS'}
+    print (morse_code)
+    morse_code=morse_code.split("   ")
+    morse_code="  ".join(morse_code)
+    morse_code=morse_code.strip(' ')
+    return ("".join([dic[i]for i in morse_code.split(' ')])).replace('  ',' ')

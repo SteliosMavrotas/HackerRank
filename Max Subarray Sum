@@ -1,0 +1,9 @@
+def max_sequence(a):
+    p={sum([a[k] for k in range(j,j+arrLen)]):[a[k] for k in range(j,j+arrLen)] for arrLen in range(2,len(a)+1) for j in range(0,len(a)-arrLen+1)}
+
+    if len(a)==0:
+        return 0
+    if max(p)<0:
+        return 0
+        
+    return max(p.keys())

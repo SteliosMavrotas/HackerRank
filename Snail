@@ -1,0 +1,10 @@
+import numpy as np
+import math
+
+def snail(snail_map):
+    s=np.array(snail_map)
+    return [_ for i in [s[int((i-1)/4)+1:len(s)-(int((i-1)/4)),len(s)-1-int((i-1)/4)] if (i in range(1,1000,4)) 
+    else s[len(s)-int((i+2)/4),int((i+2)/4)-1:len(s)-int((i+2)/4)][::-1] if (i in range(2,1000,4)) 
+    else s[int((i+1)/4):(len(s)-int((i+1)/4)),int((i+1)/4)-1][::-1] if (i in range(3,1000,4)) 
+    else s[int(i/4),int(i/4):len(s)-int(i/4)] for i in range(0,len(s)*2-1)] for _ in i]
+        

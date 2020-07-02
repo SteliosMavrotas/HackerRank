@@ -1,0 +1,35 @@
+import numpy as np
+class Sudoku(object):
+    def __init__(self, data):
+        
+        self.data=data
+        
+        self.is_valid()
+        
+    def is_valid(self):
+        if len(self.data)==1 and self.data[0][0]!=1:
+            return False
+        elif str(self.data[0][0]).isnumeric()==False:
+            return False
+        elif len(self.data)==1 and self.data[0][0]==1:
+            return True
+            
+        boxLength=[i for i in range(2,1000) if len(self.data)%i==0][0]
+        sums=boxLength**2*(1+boxLength**2)/2
+        
+        if (len(np.array(self.data))!=len(np.array(self.data)[0])):
+            return False
+        
+        try:
+            rows=[1 if i==sums else 0 for i in [sum(i) for i in self.data]]
+            collumns=[1 if i==sums else 0 for i in [sum(j) for j in np.transpose(np.array(self.data))]]
+            boxes =[1 if i==sums else 0 for i in [sum([_ for j in np.array(self.data)[i:(i+boxLength),j:(j+boxLength)].tolist() for _ in j]) for i in range(0,len(self.data)+1,boxLength) for j in range(0,len(self.data)+1,boxLength) if [_ for j in np.array(self.data)[i:(i+boxLength),j:(j+boxLength)].tolist() for _ in j ]!=[]]]
+            
+        except:
+            return False
+
+        if sum(rows)!=len(rows) or sum(collumns)!=len(collumns) or sum(boxes)!=len(boxes):
+            return False
+        else:
+            return True
+        

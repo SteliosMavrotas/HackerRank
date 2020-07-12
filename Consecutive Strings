@@ -1,0 +1,4 @@
+def longest_consec(strarr, k):
+    a=[[len("".join([strarr[i] for i in range(c,c+k)])),"".join([strarr[i] for i in range(c,c+k)])] for c,v in enumerate(strarr[k-1::])]
+             
+    return a[[i[0] for i in a].index(max([i[0] for i in a]))][1] if a!=[] else ''

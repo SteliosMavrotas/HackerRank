@@ -1,0 +1,28 @@
+def pascals_triangle(n):
+    pasc=[[1],[1,1]]
+    
+    if n==1:
+        return pasc[0]
+    else:
+        for i in range(2,n):
+            pasc.append([1]+[pasc[i-1][j-1]+pasc[i-1][j-2] for j in range(2,i+1)]+[1])
+            
+    return [_ for i in pasc for _ in i]
+
+def generate_diagonal(n, l):
+    if l==0:
+        return []
+    startingPoint=[0]
+    pasc=pascals_triangle(n+l+1)
+    
+    for i in range(1,n+1):
+        startingPoint.append(startingPoint[-1]+2+i-1)
+        
+    sp=[startingPoint[n]]
+    
+    for j in range(0,l-1):
+        
+        sp.append(sp[-1]+n+1+j)
+        
+    return [pasc[i] for i in sp]
+

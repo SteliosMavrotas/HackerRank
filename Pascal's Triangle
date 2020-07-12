@@ -1,0 +1,10 @@
+def pascals_triangle(n):
+    pasc=[[1],[1,1]]
+    
+    if n==1:
+        return pasc[0]
+    else:
+        for i in range(2,n):
+            pasc.append([1]+[pasc[i-1][j-1]+pasc[i-1][j-2] for j in range(2,i+1)]+[1])
+            
+    return [_ for i in pasc for _ in i]

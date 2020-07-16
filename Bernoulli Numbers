@@ -10,7 +10,7 @@ def bernoulli_number(n):
         return brn[n]
     a=calculateBernouli(n,pasc,brn)[-1]
     print(a)
-    return Fraction.from_decimal(a).limit_denominator()
+    return Fraction(a).limit_denominator()
 
 def calculateBernouli(n,pasc,brn):
     
@@ -18,6 +18,10 @@ def calculateBernouli(n,pasc,brn):
     
     if len(pasc)==n+3:
         return brn
-    
+    if len(pasc)%2!=0:
+        brn.append(0)
+        return calculateBernouli(n, pasc, brn)
+        
     brn.append(sum([-1]+[Decimal(-v*brn[c+1]) for c,v in enumerate(pasc[-1][1:len(pasc[-1])-2])])/pasc[-1][-2])
+    
     return calculateBernouli(n, pasc, brn)
